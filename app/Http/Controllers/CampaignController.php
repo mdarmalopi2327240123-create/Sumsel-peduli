@@ -48,7 +48,7 @@ class CampaignController extends Controller
             'target' => 'required|numeric|min:100000',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
 
         $validated['user_id'] = Auth::id();
@@ -97,7 +97,7 @@ class CampaignController extends Controller
             'status' => 'required|in:pending,aktif,selesai',
             'tanggal_mulai' => 'required|date',
             'tanggal_selesai' => 'required|date|after:tanggal_mulai',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
 
         if ($request->hasFile('gambar')) {

@@ -139,7 +139,7 @@ class DonationController extends Controller
         }
 
         $request->validate([
-            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'bukti_transfer' => 'required|image|mimes:jpeg,png,jpg,gif|max:4096'
         ]);
 
         if ($request->hasFile('bukti_transfer')) {
