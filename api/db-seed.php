@@ -18,10 +18,14 @@ try {
     // 4. Run Artisan Command
     $output = new \Symfony\Component\Console\Output\BufferedOutput;
     
+    echo "<p>Running: php artisan migrate --force</p>";
+    $statusMigration = $kernel->call('migrate', ['--force' => true], $output);
+    echo "<p>Migration Status Code: " . $statusMigration . "</p>";
+    
     echo "<p>Running: php artisan db:seed --force</p>";
-    $status = $kernel->call('db:seed', ['--force' => true], $output);
+    $statusSeeder = $kernel->call('db:seed', ['--force' => true], $output);
+    echo "<p>Seeder Status Code: " . $statusSeeder . "</p>";
 
-    echo "<p>Status Code: " . $status . "</p>";
     echo "<h2>Output:</h2>";
     echo "<pre>" . htmlspecialchars($output->fetch()) . "</pre>";
 
