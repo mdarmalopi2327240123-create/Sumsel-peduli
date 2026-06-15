@@ -59,4 +59,34 @@ class Campaign extends Model
         }
         return ($this->terkumpul / $this->target) * 100;
     }
+
+    public function getImageUrlAttribute(): string
+    {
+        if ($this->gambar) {
+            return asset('storage/' . $this->gambar);
+        }
+
+        $judulLower = strtolower($this->judul ?? '');
+        $kategoriLower = strtolower($this->kategori ?? '');
+
+        if (str_contains($judulLower, 'jembatan')) {
+            $imgFallback = 'images/campaign_jembatan.png';
+        } elseif (str_contains($judulLower, 'sembako') || str_contains($judulLower, 'lansia')) {
+            $imgFallback = 'images/campaign_sembako.png';
+        } elseif (str_contains($judulLower, 'mangrove') || str_contains($judulLower, 'tanam')) {
+            $imgFallback = 'images/campaign_mangrove.png';
+        } elseif (str_contains($judulLower, 'air') || str_contains($judulLower, 'sumur') || str_contains($judulLower, 'kering') || str_contains($judulLower, 'kekeringan')) {
+            $imgFallback = 'images/campaign_air.png';
+        } elseif (str_contains($judulLower, 'ambulans')) {
+            $imgFallback = 'images/campaign_ambulans.png';
+        } elseif (str_contains($kategoriLower, 'bencana') || str_contains($kategoriLower, 'alam') || str_contains($kategoriLower, 'banjir')) {
+            $imgFallback = 'images/campaign_bencana.png';
+        } elseif (str_contains($kategoriLower, 'didik') || str_contains($kategoriLower, 'sekolah') || str_contains($kategoriLower, 'pendidikan') || str_contains($judulLower, 'beasiswa') || str_contains($judulLower, 'yatim')) {
+            $imgFallback = 'images/campaign_pendidikan.png';
+        } else {
+            $imgFallback = 'images/campaign_kesehatan.png';
+        }
+
+        return asset($imgFallback);
+    }
 }

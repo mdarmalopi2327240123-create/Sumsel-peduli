@@ -231,25 +231,7 @@
                 <div class="card-body">
                     <h5 class="fw-bold mb-3 text-muted">Kampanye Tujuan</h5>
                     <a href="{{ route('campaign.show', $donation->campaign) }}" class="text-decoration-none text-dark">
-                        @if($donation->campaign->gambar)
-                            <img src="{{ asset('storage/' . $donation->campaign->gambar) }}" class="img-fluid rounded-3 mb-3 w-100 shadow-sm" style="height: 150px; object-fit: cover;">
-                        @else
-                            <svg class="img-fluid rounded-3 mb-3 w-100 shadow-sm" viewBox="0 0 400 200" width="100%" style="height: 150px; background: linear-gradient(135deg, #198754 0%, #115e3b 100%);">
-                                <defs>
-                                    <linearGradient id="cardGrad{{ $donation->campaign->id }}" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" style="stop-color:#198754;stop-opacity:0.8" />
-                                        <stop offset="100%" style="stop-color:#0f5132;stop-opacity:1" />
-                                    </linearGradient>
-                                </defs>
-                                <rect width="400" height="200" fill="url(#cardGrad{{ $donation->campaign->id }})" />
-                                <path d="M 0,100 Q 100,33 200,100 T 400,100 L 400,200 L 0,200 Z" fill="#ffffff" opacity="0.08" />
-                                <path d="M 0,133 Q 120,80 240,146 T 400,133 L 400,200 L 0,200 Z" fill="#ffffff" opacity="0.04" />
-                                <g transform="translate(188, 60) scale(1.5)" fill="#ffffff" opacity="0.25">
-                                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                </g>
-                                <text x="200" y="160" fill="#ffffff" opacity="0.6" font-family="'Poppins', sans-serif" font-size="14" font-weight="700" text-anchor="middle" letter-spacing="1">{{ strtoupper($donation->campaign->kategori ?? 'Kebaikan') }}</text>
-                            </svg>
-                        @endif
+                        <img src="{{ $donation->campaign->image_url }}" class="img-fluid rounded-3 mb-3 w-100 shadow-sm" style="height: 150px; object-fit: cover;">
                         <h6 class="fw-bold hover:text-success mb-1">{{ Str::limit($donation->campaign->judul, 40) }}</h6>
                     </a>
                     <small class="text-muted d-block mb-3">{{ $donation->campaign->kategori }}</small>

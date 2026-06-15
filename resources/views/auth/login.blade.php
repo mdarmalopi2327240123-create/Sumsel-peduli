@@ -38,26 +38,7 @@
                     <div class="left-side d-flex flex-column justify-content-center">
                         <h1>💚 Sumsel Peduli</h1>
                         <p>Platform donasi terpercaya untuk membantu masyarakat Sumatera Selatan melalui campaign sosial yang transparan dan mudah diakses.</p>
-                        <svg viewBox="0 0 500 400" class="auth-svg rounded-4 bg-success-subtle shadow-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
-                            <defs>
-                                <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
-                                    <stop offset="100%" style="stop-color:#d1e7dd;stop-opacity:0.6" />
-                                </linearGradient>
-                                <linearGradient id="circGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
-                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
-                                </linearGradient>
-                            </defs>
-                            <circle cx="100" cy="100" r="150" fill="url(#circGrad)" />
-                            <circle cx="420" cy="320" r="120" fill="url(#circGrad)" />
-                            <circle cx="380" cy="80" r="60" fill="url(#circGrad)" />
-                            <path d="M 250 240 C 200 170, 150 170, 150 110 C 150 60, 200 50, 250 110 C 300 50, 350 60, 350 110 C 350 170, 300 170, 250 240 Z" fill="url(#heartGrad)" transform="translate(0, 40)" />
-                            <path d="M 120 280 C 105 260, 90 260, 90 240 C 90 220, 105 220, 120 240 C 135 220, 150 220, 150 240 C 150 260, 135 260, 120 280 Z" fill="#ffffff" opacity="0.4" transform="scale(0.8) translate(30, 20)" />
-                            <path d="M 380 280 C 365 260, 350 260, 350 240 C 350 220, 365 220, 380 240 C 395 220, 410 220, 410 240 C 410 260, 395 260, 380 280 Z" fill="#ffffff" opacity="0.6" transform="scale(0.7) translate(180, 80)" />
-                            <path d="M 120,320 Q 250,370 380,320" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
-                            <path d="M 160,340 Q 250,380 340,340" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.3" />
-                        </svg>
+                        <img src="{{ asset('images/auth_charity.png') }}" alt="Sumsel Peduli" class="img-fluid rounded-4 shadow-sm w-100" style="object-fit: cover; max-height: 320px;">
                     </div>
                 </div>
                 <div class="col-lg-7">

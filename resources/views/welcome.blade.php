@@ -16,33 +16,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-lg-6 d-none d-lg-block">
-                <svg viewBox="0 0 800 600" width="100%" class="img-fluid rounded-5 shadow-lg" style="background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15);">
-                    <defs>
-                        <linearGradient id="heroGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.25" />
-                            <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0.02" />
-                        </linearGradient>
-                        <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#20c997;stop-opacity:0.4" />
-                            <stop offset="100%" style="stop-color:#198754;stop-opacity:0.1" />
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Background decorations -->
-                    <rect width="800" height="600" fill="url(#accentGrad)" rx="30" />
-                    <circle cx="650" cy="150" r="250" fill="url(#heroGrad)" />
-                    <circle cx="150" cy="450" r="180" fill="url(#heroGrad)" />
-
-                    <!-- Hands / Helping Abstract Icon in center -->
-                    <g transform="translate(352, 210) scale(4)" fill="#ffffff" opacity="0.85">
-                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                    </g>
-
-                    <!-- Premium Typography watermark -->
-                    <text x="400" y="450" fill="#ffffff" opacity="0.75" font-family="'Poppins', sans-serif" font-size="32" font-weight="700" text-anchor="middle" letter-spacing="4">SUMSEL PEDULI</text>
-                    <text x="400" y="490" fill="#ffffff" opacity="0.5" font-family="'Poppins', sans-serif" font-size="18" text-anchor="middle">Mari Berbagi, Tumbuhkan Harapan</text>
-                </svg>
+            <div class="col-lg-6 d-none d-lg-block text-center">
+                <img src="{{ asset('images/hero_charity.png') }}" alt="Sumsel Peduli" class="img-fluid rounded-5 shadow-lg w-100" style="object-fit: cover; max-height: 450px;">
             </div>
         </div>
     </div>
@@ -86,25 +61,7 @@
         @foreach($campaigns->take(3) as $campaign)
         <div class="col-lg-4 col-md-6">
             <div class="card campaign-card h-100">
-                @if($campaign->gambar)
-                    <img src="{{ $campaign->gambar }}" class="card-img-top" alt="{{ $campaign->judul }}" style="height: 200px; object-fit: cover;">
-                @else
-                    <svg class="card-img-top" viewBox="0 0 500 300" width="100%" style="height: 200px; background: linear-gradient(135deg, #198754 0%, #115e3b 100%);">
-                        <defs>
-                            <linearGradient id="cardGrad{{ $campaign->id }}" x1="0%" y1="0%" x2="100%" y2="100%">
-                                <stop offset="0%" style="stop-color:#198754;stop-opacity:0.8" />
-                                <stop offset="100%" style="stop-color:#0f5132;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect width="500" height="300" fill="url(#cardGrad{{ $campaign->id }})" />
-                        <path d="M 0,150 Q 125,50 250,150 T 500,150 L 500,300 L 0,300 Z" fill="#ffffff" opacity="0.08" />
-                        <path d="M 0,200 Q 150,120 300,220 T 500,200 L 500,300 L 0,300 Z" fill="#ffffff" opacity="0.04" />
-                        <g transform="translate(238, 90) scale(2)" fill="#ffffff" opacity="0.25">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                        </g>
-                        <text x="250" y="240" fill="#ffffff" opacity="0.6" font-family="'Poppins', sans-serif" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="1">{{ strtoupper($campaign->kategori ?? 'Kebaikan') }}</text>
-                    </svg>
-                @endif
+                <img src="{{ $campaign->image_url }}" class="card-img-top" alt="{{ $campaign->judul }}" style="height: 200px; object-fit: cover;">
                 <div class="card-body d-flex flex-column">
                     <span class="badge bg-success-subtle text-success rounded-pill px-3 mb-2 align-self-start">{{ $campaign->kategori }}</span>
                     <h5 class="card-title fw-bold mb-3">{{ $campaign->judul }}</h5>

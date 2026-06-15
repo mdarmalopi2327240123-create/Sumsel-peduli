@@ -22,27 +22,7 @@
                         <hr class="my-4">
                         
                         <h4 class="mb-4 fw-bold text-dark">Informasi Campaign</h4>
-                        @if($campaign->gambar)
-                            <img src="{{ asset('storage/' . $campaign->gambar) }}" class="img-fluid rounded-4 mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: cover;">
-                        @else
-                            <div class="rounded-4 mb-4 w-100 shadow-sm d-flex align-items-center justify-content-center" style="height: 300px; background: linear-gradient(135deg, #198754 0%, #115e3b 100%);">
-                                <svg viewBox="0 0 500 300" class="w-100 h-100" style="max-height: 300px;">
-                                    <defs>
-                                        <linearGradient id="detailVerifyGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                            <stop offset="0%" style="stop-color:#198754;stop-opacity:0.8" />
-                                            <stop offset="100%" style="stop-color:#0f5132;stop-opacity:1" />
-                                        </linearGradient>
-                                    </defs>
-                                    <rect width="500" height="300" fill="url(#detailVerifyGrad)" />
-                                    <path d="M 0,150 Q 125,50 250,150 T 500,150 L 500,300 L 0,300 Z" fill="#ffffff" opacity="0.08" />
-                                    <path d="M 0,200 Q 150,120 300,220 T 500,200 L 500,300 L 0,300 Z" fill="#ffffff" opacity="0.04" />
-                                    <g transform="translate(238, 90) scale(2)" fill="#ffffff" opacity="0.25">
-                                        <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                                    </g>
-                                    <text x="250" y="240" fill="#ffffff" opacity="0.6" font-family="'Poppins', sans-serif" font-size="18" font-weight="700" text-anchor="middle" letter-spacing="1">{{ strtoupper($campaign->kategori ?? 'Kebaikan') }}</text>
-                                </svg>
-                            </div>
-                        @endif
+                        <img src="{{ $campaign->image_url }}" class="img-fluid rounded-4 mb-4 w-100 shadow-sm" style="max-height: 400px; object-fit: cover;">
                         
                         <div class="row g-3 mb-4">
                             <div class="col-md-6">
@@ -216,27 +196,7 @@
     <div class="row g-4">
         <div class="col-lg-8">
             <div class="card card-custom overflow-hidden bg-white">
-                @if($campaign->gambar)
-                    <img src="{{ asset('storage/' . $campaign->gambar) }}" class="img-fluid w-100" style="height: 450px; object-fit: cover;">
-                @else
-                    <div class="w-100 d-flex align-items-center justify-content-center" style="height: 450px; background: linear-gradient(135deg, #198754 0%, #115e3b 100%);">
-                        <svg viewBox="0 0 800 450" class="w-100 h-100" style="max-height: 450px;">
-                            <defs>
-                                <linearGradient id="detailGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" style="stop-color:#198754;stop-opacity:0.8" />
-                                    <stop offset="100%" style="stop-color:#0f5132;stop-opacity:1" />
-                                </linearGradient>
-                            </defs>
-                            <rect width="800" height="450" fill="url(#detailGrad)" />
-                            <path d="M 0,225 Q 200,75 400,225 T 800,225 L 800,450 L 0,450 Z" fill="#ffffff" opacity="0.08" />
-                            <path d="M 0,300 Q 250,180 500,330 T 800,300 L 800,450 L 0,450 Z" fill="#ffffff" opacity="0.04" />
-                            <g transform="translate(380, 150) scale(3)" fill="#ffffff" opacity="0.25">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-                            </g>
-                            <text x="400" y="360" fill="#ffffff" opacity="0.6" font-family="'Poppins', sans-serif" font-size="24" font-weight="700" text-anchor="middle" letter-spacing="1">{{ strtoupper($campaign->kategori ?? 'Kebaikan') }}</text>
-                        </svg>
-                    </div>
-                @endif
+                <img src="{{ $campaign->image_url }}" class="img-fluid w-100" style="height: 450px; object-fit: cover;">
                 <div class="card-body p-4">
                     <div class="d-flex gap-2 mb-3">
                         <span class="badge bg-success-subtle text-success rounded-pill px-3">{{ $campaign->kategori }}</span>
