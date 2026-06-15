@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/updates/{campaignUpdate}', [CampaignUpdateController::class, 'destroy'])->name('campaign-update.destroy');
 
     // Category management
-    Route::resource('category', CategoryController::class);
+    Route::resource('category', CategoryController::class)->except(['index', 'show']);
 
     // Donation management
     Route::get('/donations', [DonationController::class, 'index'])->name('donation.index');
