@@ -47,12 +47,20 @@ try {
     echo "<p>Error Code: " . htmlspecialchars($e->getCode()) . "</p>";
 }
 
+if (isset($_GET['migrate']) || isset($_GET['seed'])) {
+    try {
+        require_once __DIR__.'/../vendor/autoload.php';
+        $app = require __DIR__.'/../bootstrap/app.php';
+        $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+    } catch (\Throwable $e) {
+        echo "<p style='color: red;'><strong>Laravel Bootstrap Error:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
+        exit;
+    }
+}
+
 if (isset($_GET['migrate']) && $_GET['migrate'] === 'true') {
     echo "<h2>Running Database Migration...</h2>";
     try {
-        require_once __DIR__.'/../vendor/autoload.php';
-        $app = require_once __DIR__.'/../bootstrap/app.php';
-        $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
         $output = new \Symfony\Component\Console\Output\BufferedOutput;
         
         echo "<p>Running: php artisan migrate --force</p>";
@@ -70,9 +78,6 @@ if (isset($_GET['migrate']) && $_GET['migrate'] === 'true') {
 if (isset($_GET['seed']) && $_GET['seed'] === 'true') {
     echo "<h2>Running Database Seeder...</h2>";
     try {
-        require_once __DIR__.'/../vendor/autoload.php';
-        $app = require_once __DIR__.'/../bootstrap/app.php';
-        $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
         $output = new \Symfony\Component\Console\Output\BufferedOutput;
         
         echo "<p>Running: php artisan db:seed --force</p>";
