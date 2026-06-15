@@ -42,6 +42,18 @@ try {
     $tables = $stmt->fetchAll(PDO::FETCH_COLUMN);
     echo "<p><strong>Tables in database:</strong> " . implode(', ', $tables) . "</p>";
 
+    echo "<h3>Table Row Counts:</h3><ul>";
+    foreach (['users', 'campaigns', 'categories', 'donations', 'campaign_updates'] as $table) {
+        if (in_array($table, $tables)) {
+            $countStmt = $pdo->query("SELECT COUNT(*) FROM `$table`");
+            $count = $countStmt->fetchColumn();
+            echo "<li><strong>$table:</strong> $count rows</li>";
+        } else {
+            echo "<li style='color: red;'><strong>$table:</strong> table not found</li>";
+        }
+    }
+    echo "</ul>";
+
 } catch (\PDOException $e) {
     echo "<p style='color: red;'><strong>Database Connection Failed:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
     echo "<p>Error Code: " . htmlspecialchars($e->getCode()) . "</p>";
