@@ -46,3 +46,23 @@ try {
     echo "<p style='color: red;'><strong>Database Connection Failed:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
     echo "<p>Error Code: " . htmlspecialchars($e->getCode()) . "</p>";
 }
+
+if (isset($_GET['seed']) && $_GET['seed'] === 'true') {
+    echo "<h2>Running Database Seeder...</h2>";
+    try {
+        require_once __DIR__.'/../vendor/autoload.php';
+        $app = require_once __DIR__.'/../bootstrap/app.php';
+        $kernel = $app->make(Illuminate\Contracts\Console\Kernel::class);
+        $output = new \Symfony\Component\Console\Output\BufferedOutput;
+        
+        echo "<p>Running: php artisan db:seed --force</p>";
+        $status = $kernel->call('db:seed', ['--force' => true], $output);
+        
+        echo "<p>Status Code: " . $status . "</p>";
+        echo "<h2>Output:</h2>";
+        echo "<pre>" . htmlspecialchars($output->fetch()) . "</pre>";
+    } catch (\Throwable $e) {
+        echo "<p style='color: red;'><strong>Seeder Error:</strong> " . htmlspecialchars($e->getMessage()) . "</p>";
+        echo "<pre>" . htmlspecialchars($e->getTraceAsString()) . "</pre>";
+    }
+}
