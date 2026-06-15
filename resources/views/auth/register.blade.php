@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Daftar - Sumsel Peduli</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { background: #f5f7fb; min-height: 100vh; display: flex; align-items: center; justify-content: center; padding: 20px; }
+        .login-container { width: 100%; max-width: 950px; background: white; border-radius: 24px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,.05); }
+        .left-side { background: #198754; color: white; padding: 40px; height: 100%; min-height: 520px; }
+        .left-side h1 { font-size: 28px; font-weight: 700; margin-bottom: 15px; }
+        .left-side p { font-size: 14px; opacity: .9; line-height: 1.6; }
+        .auth-svg { max-height: 200px; width: 100%; margin-top: 25px; }
+        .right-side { padding: 40px; }
+        .logo { font-size: 24px; font-weight: 700; margin-bottom: 10px; }
+        .form-control { height: 46px; border-radius: 12px; border: 1px solid #ddd; font-size: 14px; }
+        .form-control:focus { box-shadow: none; border-color: #198754; }
+        .form-label { font-size: 14px; margin-bottom: 6px; font-weight: 500; }
+        .btn-login { height: 46px; border-radius: 12px; font-weight: 600; font-size: 15px; }
+        .social-btn { height: 44px; border-radius: 10px; font-size: 14px; }
+        .divider { display: flex; align-items: center; margin: 15px 0; font-size: 13px; }
+        .divider::before, .divider::after { content: ''; flex: 1; height: 1px; background: #eee; }
+        .divider span { padding: 0 12px; color: #888; }
+        .text-muted { font-size: 14px; }
+        .form-check-label, .text-success { font-size: 14px; }
+        @media(max-width: 991px) { .left-side { display: none; } .right-side { padding: 30px 20px; } .login-container { max-width: 500px; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="login-container">
+            <div class="row g-0">
+                <div class="col-lg-5">
+                    <div class="left-side d-flex flex-column justify-content-center">
+                        <h1>💚 Sumsel Peduli</h1>
+                        <p>Platform donasi terpercaya untuk membantu masyarakat Sumatera Selatan melalui campaign sosial yang transparan dan mudah diakses.</p>
+                        <svg viewBox="0 0 500 400" class="auth-svg rounded-4 bg-success-subtle shadow-sm" style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);">
+                            <defs>
+                                <linearGradient id="heartGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.9" />
+                                    <stop offset="100%" style="stop-color:#d1e7dd;stop-opacity:0.6" />
+                                </linearGradient>
+                                <linearGradient id="circGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.15" />
+                                    <stop offset="100%" style="stop-color:#ffffff;stop-opacity:0" />
+                                </linearGradient>
+                            </defs>
+                            <circle cx="100" cy="100" r="150" fill="url(#circGrad)" />
+                            <circle cx="420" cy="320" r="120" fill="url(#circGrad)" />
+                            <circle cx="380" cy="80" r="60" fill="url(#circGrad)" />
+                            <path d="M 250 240 C 200 170, 150 170, 150 110 C 150 60, 200 50, 250 110 C 300 50, 350 60, 350 110 C 350 170, 300 170, 250 240 Z" fill="url(#heartGrad)" transform="translate(0, 40)" />
+                            <path d="M 120 280 C 105 260, 90 260, 90 240 C 90 220, 105 220, 120 240 C 135 220, 150 220, 150 240 C 150 260, 135 260, 120 280 Z" fill="#ffffff" opacity="0.4" transform="scale(0.8) translate(30, 20)" />
+                            <path d="M 380 280 C 365 260, 350 260, 350 240 C 350 220, 365 220, 380 240 C 395 220, 410 220, 410 240 C 410 260, 395 260, 380 280 Z" fill="#ffffff" opacity="0.6" transform="scale(0.7) translate(180, 80)" />
+                            <path d="M 120,320 Q 250,370 380,320" fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.5" />
+                            <path d="M 160,340 Q 250,380 340,340" fill="none" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.3" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="right-side">
+                        <div class="logo">Daftar Akun</div>
+                        <p class="text-muted mb-4">Buat akun baru untuk memulai perjalanan berbagi Anda.</p>
+                        
+                        <form method="POST" action="{{ route('register') }}">
+                            @csrf
+                            <div class="mb-3">
+                                <label class="form-label">Nama Lengkap</label>
+                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" placeholder="Masukkan nama lengkap" required autofocus>
+                                @error('name')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Email</label>
+                                <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email') }}" placeholder="Masukkan email" required>
+                                @error('email')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Password</label>
+                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" placeholder="Masukkan password" required autocomplete="new-password">
+                                @error('password')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Konfirmasi Password</label>
+                                <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi password" required autocomplete="new-password">
+                            </div>
+                            <div class="mb-4">
+                                <label class="form-label">Pilih Peran</label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="roleDonatur" value="donatur" {{ old('role', 'donatur') == 'donatur' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="roleDonatur">
+                                        💚 Donatur (Pemberi Donasi)
+                                    </label>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="role" id="roleFundraiser" value="fundraiser" {{ old('role') == 'fundraiser' ? 'checked' : '' }} required>
+                                    <label class="form-check-label" for="roleFundraiser">
+                                        🤝 Fundraiser (Penggalang Dana)
+                                    </label>
+                                </div>
+                                @error('role')
+                                    <div class="text-danger small mt-1">{{ $message }}</div>
+                                @enderror
+                            </div>
+                            <button type="submit" class="btn btn-success btn-login w-100">Daftar</button>
+                        </form>
+                        
+                        <div class="divider"><span>ATAU</span></div>
+                        <div class="text-center mt-4">
+                            Sudah punya akun? <a href="{{ route('login') }}" class="text-success text-decoration-none fw-bold">Masuk Sekarang</a>
+                        </div>
+                        <div class="text-center mt-4">
+                            <a href="{{ route('home') }}" class="btn btn-outline-success"><i class="bi bi-arrow-left"></i> Kembali ke Beranda</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
