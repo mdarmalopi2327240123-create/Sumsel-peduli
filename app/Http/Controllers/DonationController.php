@@ -191,7 +191,6 @@ class DonationController extends Controller
             // Create certificate automatically
             $noCert = 'CERT/' . date('Ymd') . '/' . $donation->id . '/' . rand(100, 999);
             \App\Models\Certificate::create([
-                'user_id' => $donation->user_id,
                 'donation_id' => $donation->id,
                 'nomor_sertifikat' => $noCert,
                 'tanggal_terbit' => now()
@@ -252,7 +251,6 @@ class DonationController extends Controller
         if (!$certificate) {
             $noCert = 'CERT/' . date('Ymd') . '/' . $donation->id . '/' . rand(100, 999);
             $certificate = \App\Models\Certificate::create([
-                'user_id' => $donation->user_id,
                 'donation_id' => $donation->id,
                 'nomor_sertifikat' => $noCert,
                 'tanggal_terbit' => now()

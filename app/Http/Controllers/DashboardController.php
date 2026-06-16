@@ -134,8 +134,9 @@ class DashboardController extends Controller
             $supportedCampaignsCount = $donations->where('status', 'completed')->pluck('campaign_id')->unique()->count();
             
             // Certificates
-            $certificates = Certificate::with('donation.campaign')
-                ->where('user_id', $user->id)
+            $certificates = Certificate::whereHas('donation', function ($query) use ($user) {
+                $query->where('user_id', $user->id);
+            })->with('donation.campaign')
                 ->latest()
                 ->get();
 
