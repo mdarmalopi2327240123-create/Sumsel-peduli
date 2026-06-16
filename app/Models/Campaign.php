@@ -63,7 +63,6 @@ class Campaign extends Model
     public function getImageUrlAttribute(): string
     {
         $showUploaded = $this->gambar && 
-                        !str_contains(request()->getHost(), 'vercel.app') && 
                         file_exists(public_path('storage/' . $this->gambar));
 
         if ($showUploaded) {
