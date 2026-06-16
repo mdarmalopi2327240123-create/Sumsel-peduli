@@ -47,8 +47,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
 
-        return redirect()->route('login')->with('success', 'Pendaftaran berhasil! Silakan masuk dengan akun baru Anda.');
+        return redirect()->route('dashboard')->with('success', 'Pendaftaran berhasil! Selamat datang di Sumsel Peduli.');
     }
 }

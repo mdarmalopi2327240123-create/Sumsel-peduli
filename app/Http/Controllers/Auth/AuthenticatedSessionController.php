@@ -76,6 +76,10 @@ class AuthenticatedSessionController extends Controller
             }
         }
 
+        if ($user->status === 'nonaktif') {
+            return redirect()->route('login')->withErrors(['email' => 'Akun Anda telah dinonaktifkan oleh Admin.']);
+        }
+
         Auth::login($user);
         $request->session()->regenerate();
 

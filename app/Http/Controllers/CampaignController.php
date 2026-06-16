@@ -157,10 +157,9 @@ class CampaignController extends Controller
         // Create notification for fundraiser
         \App\Models\Notification::create([
             'user_id' => $campaign->user_id,
-            'title' => 'Status Kampanye Diperbarui',
-            'message' => "Kampanye \"" . $campaign->judul . "\" Anda telah " . ($validated['status'] === 'aktif' ? 'disetujui dan aktif.' : 'ditolak oleh admin.'),
-            'type' => $validated['status'] === 'aktif' ? 'success' : 'danger',
-            'is_read' => false
+            'judul' => 'Status Kampanye Diperbarui',
+            'pesan' => "Kampanye \"" . $campaign->judul . "\" Anda telah " . ($validated['status'] === 'aktif' ? 'disetujui dan aktif.' : 'ditolak oleh admin.'),
+            'status' => 'belum'
         ]);
 
         return redirect()->route('campaign.show', $campaign)

@@ -200,10 +200,9 @@ class DonationController extends Controller
             // Create notification for donatur
             \App\Models\Notification::create([
                 'user_id' => $donation->user_id,
-                'title' => 'Donasi Berhasil Diverifikasi',
-                'message' => "Donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " untuk \"" . $campaign->judul . "\" telah diverifikasi oleh Admin. Sertifikat Anda sudah terbit!",
-                'type' => 'success',
-                'is_read' => false
+                'judul' => 'Donasi Berhasil Diverifikasi',
+                'pesan' => "Donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " untuk \"" . $campaign->judul . "\" telah diverifikasi oleh Admin. Sertifikat Anda sudah terbit!",
+                'status' => 'belum'
             ]);
         } elseif ($oldStatus === 'completed' && $newStatus === 'failed') {
             // Deduct campaign terkumpul
@@ -217,19 +216,17 @@ class DonationController extends Controller
             // Create notification for donatur
             \App\Models\Notification::create([
                 'user_id' => $donation->user_id,
-                'title' => 'Verifikasi Donasi Gagal',
-                'message' => "Bukti transfer donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " ditolak oleh Admin.",
-                'type' => 'danger',
-                'is_read' => false
+                'judul' => 'Verifikasi Donasi Gagal',
+                'pesan' => "Bukti transfer donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " ditolak oleh Admin.",
+                'status' => 'belum'
             ]);
         } elseif ($newStatus === 'failed') {
             // Create notification for donatur
             \App\Models\Notification::create([
                 'user_id' => $donation->user_id,
-                'title' => 'Verifikasi Donasi Gagal',
-                'message' => "Bukti transfer donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " ditolak oleh Admin.",
-                'type' => 'danger',
-                'is_read' => false
+                'judul' => 'Verifikasi Donasi Gagal',
+                'pesan' => "Bukti transfer donasi Anda sebesar Rp " . number_format($donation->amount, 0, ',', '.') . " ditolak oleh Admin.",
+                'status' => 'belum'
             ]);
         }
 
