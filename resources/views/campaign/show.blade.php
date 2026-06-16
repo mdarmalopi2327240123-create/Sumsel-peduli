@@ -175,9 +175,18 @@
                     <div class="card-body">
                         <h4 class="fw-bold mb-3 text-dark">Status</h4>
                         <hr class="mb-4">
-                        <div class="bg-warning text-dark text-center p-3 rounded-4 fw-bold fs-5 shadow-sm">
+                        <div class="bg-warning text-dark text-center p-3 rounded-4 fw-bold fs-5 shadow-sm mb-3">
                             <i class="bi bi-hourglass-split"></i> Pending Review
                         </div>
+                        @can('delete', $campaign)
+                            <form action="{{ route('campaign.destroy', $campaign) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus campaign ini? Semua data terkait termasuk donasi dan update akan dihapus secara permanen.')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger w-100 py-2 fw-bold text-white rounded-pill shadow-sm">
+                                    <i class="bi bi-trash3-fill me-1"></i> Hapus Campaign
+                                </button>
+                            </form>
+                        @endcan
                     </div>
                 </div>
                 
@@ -293,26 +302,25 @@
         </div>
         
         <div class="col-lg-4">
-            @if (Auth::check() && Auth::user()->role === 'admin' && $campaign->status === 'pending')
-                <div class="card card-custom bg-warning-subtle border border-warning rounded-4 mb-4 sticky-top" style="top: 20px;">
+            @if (Auth::check() && Auth::user()->role === 'admin')
+                <div class="card card-custom border border-success rounded-4 mb-4">
                     <div class="card-body p-4">
-                        <h5 class="fw-bold mb-3 text-warning-emphasis"><i class="bi bi-patch-exclamation-fill"></i> Verifikasi Kampanye</h5>
-                        <p class="small text-muted mb-4">Sebagai Administrator, Anda perlu meninjau dan menyetujui atau menolak kampanye ini agar dapat dipublikasikan.</p>
-                        <form action="{{ route('campaign.verify', $campaign) }}" method="POST" class="d-flex gap-2">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" name="status" value="aktif" class="btn btn-success flex-grow-1 py-2 text-white">
-                                <i class="bi bi-check-lg"></i> Setujui
-                            </button>
-                            <button type="submit" name="status" value="ditolak" class="btn btn-danger flex-grow-1 py-2 text-white">
-                                <i class="bi bi-x-lg"></i> Tolak
-                            </button>
-                        </form>
+                        <h5 class="fw-bold mb-3 text-success"><i class="bi bi-shield-lock-fill"></i> Admin Panel</h5>
+                        <p class="small text-muted mb-3">Sebagai Administrator, Anda memiliki akses penuh untuk mengelola atau menghapus kampanye ini.</p>
+                        @can('delete', $campaign)
+                            <form action="{{ route('campaign.destroy', $campaign) }}" method="POST" onsubmit="return confirm('Apakah Anda yakin ingin menghapus campaign ini? Semua data terkait termasuk donasi dan update akan dihapus secara permanen.')">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger w-100 py-2 fw-bold text-white rounded-pill shadow-sm">
+                                    <i class="bi bi-trash3-fill me-1"></i> Hapus Campaign
+                                </button>
+                            </form>
+                        @endcan
                     </div>
                 </div>
             @endif
 
-            <div class="card card-custom sticky-top" style="top: {{ Auth::check() && Auth::user()->role === 'admin' && $campaign->status === 'pending' ? '280px' : '20px' }};">
+            <div class="card card-custom sticky-top" style="top: 20px;">
                 <div class="card-body p-4">
                     <h4 class="fw-bold mb-4">Progress Donasi</h4>
                     
