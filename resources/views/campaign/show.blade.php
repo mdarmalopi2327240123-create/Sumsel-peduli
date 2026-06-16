@@ -17,7 +17,18 @@
             <div class="col-lg-8">
                 <div class="card card-custom border-0 shadow-sm rounded-4 p-4 mb-4 bg-white">
                     <div class="card-body">
-                        <h2 class="fw-bold mb-1 text-success"><i class="bi bi-patch-check-fill"></i> Verifikasi Campaign</h2>
+                        <div class="d-flex justify-content-between align-items-center mb-1">
+                            <h2 class="fw-bold mb-0 text-success"><i class="bi bi-patch-check-fill"></i> Verifikasi Campaign</h2>
+                            @can('delete', $campaign)
+                                <form action="{{ route('campaign.destroy', $campaign) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus campaign ini? Semua data terkait termasuk donasi dan update akan dihapus secara permanen.')">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-outline-danger btn-sm rounded-pill px-3 py-2 fw-semibold">
+                                        <i class="bi bi-trash3-fill me-1"></i> Hapus Campaign
+                                    </button>
+                                </form>
+                            @endcan
+                        </div>
                         <p class="text-muted">Periksa kelengkapan campaign sebelum dipublikasikan ke platform.</p>
                         <hr class="my-4">
                         
@@ -204,7 +215,36 @@
                             {{ ucfirst($campaign->status) }}
                         </span>
                     </div>
-                    <h1 class="fw-bold mb-3">{{ $campaign->judul }}</h1>
+                    <div class="d-flex justify-content-between align-items-start gap-3 mb-3">
+                        <h1 class="fw-bold mb-0">{{ $campaign->judul }}</h1>
+                        @if (Auth::check() && (Auth::user()->role === 'admin' || Auth::id() === $campaign->user_id))
+                            <div class="dropdown">
+                                <button class="btn btn-light btn-sm rounded-pill px-3 py-2 border shadow-sm" type="button" id="campaignActionsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-three-dots-vertical"></i> Aksi
+                                </button>
+                                <ul class="dropdown-menu dropdown-menu-end shadow border-0 rounded-4" aria-labelledby="campaignActionsDropdown">
+                                    @can('update', $campaign)
+                                        <li>
+                                            <a class="dropdown-item py-2 px-3 fw-medium" href="{{ route('campaign.edit', $campaign) }}">
+                                                <i class="bi bi-pencil-square text-success me-2"></i> Edit Campaign
+                                            </a>
+                                        </li>
+                                    @endcan
+                                    @can('delete', $campaign)
+                                        <li>
+                                            <form action="{{ route('campaign.destroy', $campaign) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus campaign ini? Semua data terkait termasuk donasi dan update akan dihapus permanen.')">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit" class="dropdown-item text-danger py-2 px-3 fw-medium">
+                                                    <i class="bi bi-trash3-fill text-danger me-2"></i> Hapus Campaign
+                                                </button>
+                                            </form>
+                                        </li>
+                                    @endcan
+                                </ul>
+                            </div>
+                        @endif
+                    </div>
                     <div class="d-flex align-items-center mb-4">
                         <img src="https://ui-avatars.com/api/?name={{ urlencode($campaign->user->name) }}&background=198754&color=fff" class="rounded-circle me-3" width="40">
                         <div>

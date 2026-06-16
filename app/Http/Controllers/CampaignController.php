@@ -118,8 +118,23 @@ class CampaignController extends Controller
     {
         $this->authorize('delete', $campaign);
 
+        // Delete campaign header image
         if ($campaign->gambar) {
             Storage::disk('public')->delete($campaign->gambar);
+        }
+
+        // Delete update images
+        foreach ($campaign->updates as $update) {
+            if ($update->gambar) {
+                Storage::disk('public')->delete($update->gambar);
+            }
+        }
+
+        // Delete donation proofs
+        foreach ($campaign->donations as $donation) {
+            if ($donation->bukti_transfer) {
+                Storage::disk('public')->delete($donation->bukti_transfer);
+            }
         }
 
         $campaign->delete();
