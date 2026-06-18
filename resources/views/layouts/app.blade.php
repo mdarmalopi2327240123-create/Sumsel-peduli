@@ -58,6 +58,33 @@
             transform: translateY(-3px);
         }
 
+        /* Custom Pagination Styling to match green primary theme */
+        .pagination {
+            gap: 5px;
+        }
+        .pagination .page-link {
+            color: var(--primary);
+            border-color: #dee2e6;
+            border-radius: 8px !important;
+            padding: 8px 16px;
+            font-weight: 500;
+            box-shadow: none;
+            transition: all 0.2s ease;
+        }
+        .pagination .page-item.active .page-link {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            color: white !important;
+        }
+        .pagination .page-link:hover {
+            background-color: #e9ecef;
+            color: var(--primary-dark);
+            border-color: #dee2e6;
+        }
+        .pagination .page-link:focus {
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25);
+        }
+
         /* Make stat text and icon more compact */
         .stat-card .card-body {
             padding: 15px !important;
