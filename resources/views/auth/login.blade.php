@@ -45,13 +45,7 @@
                     <div class="right-side">
                         <div class="logo">Masuk Akun</div>
                         <p class="text-muted mb-4">Silakan masuk untuk melanjutkan ke dashboard.</p>
-                        
-                        <div class="alert alert-warning mb-4" role="alert">
-                            <strong>[Bantuan Database Vercel]</strong> Jika akun "tidak ditemukan" atau database kosong: 
-                            <a href="/api/db-test.php?migrate=true&seed=true" class="text-success fw-bold text-decoration-underline" target="_blank">
-                                Klik di sini untuk mengisi database secara otomatis
-                            </a>.
-                        </div>
+
                         
                         @if (session('status'))
                             <div class="alert alert-success mb-4" role="alert">
