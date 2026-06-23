@@ -56,7 +56,7 @@
                             <p class="text-muted">Anda belum memiliki riwayat donasi.</p>
                         </td>
                     </tr>
-                    @endforelse
+                    @endforelse//tujuan menampilkan perulangan
                 </tbody>
             </table>
         </div>

@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -62,8 +61,8 @@ class CampaignController extends Controller
 
         Campaign::create($validated);
 
-        $msg = Auth::user()->role === 'admin' 
-            ? 'Kampanye berhasil dibuat dan langsung aktif!' 
+        $msg = Auth::user()->role === 'admin'
+            ? 'Kampanye berhasil dibuat dan langsung aktif!'
             : 'Kampanye berhasil dibuat! Menunggu verifikasi admin sebelum tampil di publik.';
 
         return redirect()->route('campaign.index')

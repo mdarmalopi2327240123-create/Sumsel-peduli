@@ -20,7 +20,7 @@ class CategoryController extends Controller
         return view('category.create');
     }
 
-    public function store(Request $request)
+    public function store (Request $request)
     {
         $request->validate([
             'nama' => 'required|string|max:255|unique:categories',

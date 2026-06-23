@@ -8,13 +8,13 @@
         <h2 class="fw-bold">Kampanye Penggalangan Dana</h2>
         <p class="text-muted">Bantu sesama melalui donasi yang transparan</p>
     </div>
-    @auth
+    @can('create', App\Models\Campaign::class)
     <div class="col-auto">
         <a href="{{ route('campaign.create') }}" class="btn btn-success">
             <i class="bi bi-plus-lg me-2"></i> Buat Campaign
         </a>
     </div>
-    @endauth
+    @endcan
 </div>
 
 <div class="row g-4">
@@ -58,11 +58,11 @@
             <i class="bi bi-megaphone text-muted display-1 mb-3"></i>
             <h3>Belum ada campaign</h3>
             <p class="text-muted">Jadilah yang pertama membuat campaign kebaikan!</p>
-            @auth
+            @can('create', App\Models\Campaign::class)
             <div class="mt-3">
                 <a href="{{ route('campaign.create') }}" class="btn btn-success">Buat Campaign Sekarang</a>
             </div>
-            @endauth
+            @endcan
         </div>
     </div>
     @endforelse
