@@ -63,7 +63,7 @@ class Campaign extends Model
     public function getImageUrlAttribute(): string
     {
         $showUploaded = $this->gambar && 
-                        file_exists(public_path('storage/' . $this->gambar));
+                        \Illuminate\Support\Facades\Storage::disk('public')->exists($this->gambar);
 
         if ($showUploaded) {
             return asset('storage/' . $this->gambar);
