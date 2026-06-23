@@ -8,13 +8,13 @@
         <h2 class="fw-bold">Kampanye Penggalangan Dana</h2>
         <p class="text-muted">Bantu sesama melalui donasi yang transparan</p>
     </div>
-    @can('create', App\Models\Campaign::class)
+    @if(auth()->check() && auth()->user()->role !== 'donatur')
     <div class="col-auto">
         <a href="{{ route('campaign.create') }}" class="btn btn-success">
             <i class="bi bi-plus-lg me-2"></i> Buat Campaign
         </a>
     </div>
-    @endcan
+    @endif
 </div>
 
 <div class="row g-4">
@@ -57,12 +57,14 @@
         <div class="card card-custom py-5">
             <i class="bi bi-megaphone text-muted display-1 mb-3"></i>
             <h3>Belum ada campaign</h3>
-            <p class="text-muted">Jadilah yang pertama membuat campaign kebaikan!</p>
-            @can('create', App\Models\Campaign::class)
-            <div class="mt-3">
-                <a href="{{ route('campaign.create') }}" class="btn btn-success">Buat Campaign Sekarang</a>
-            </div>
-            @endcan
+            @if(auth()->check() && auth()->user()->role !== 'donatur')
+                <p class="text-muted">Jadilah yang pertama membuat campaign kebaikan!</p>
+                <div class="mt-3">
+                    <a href="{{ route('campaign.create') }}" class="btn btn-success">Buat Campaign Sekarang</a>
+                </div>
+            @else
+                <p class="text-muted">Nantikan campaign kebaikan selanjutnya!</p>
+            @endif
         </div>
     </div>
     @endforelse
