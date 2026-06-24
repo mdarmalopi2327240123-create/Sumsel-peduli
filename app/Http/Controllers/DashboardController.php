@@ -128,11 +128,11 @@ class DashboardController extends Controller
                 ->where('user_id', $user->id)
                 ->latest()
                 ->get();
-            
+
             $totalDonations = $donations->count();
             $totalDonated = $donations->where('status', 'completed')->sum('amount');
             $supportedCampaignsCount = $donations->where('status', 'completed')->pluck('campaign_id')->unique()->count();
-            
+
             // Certificates
             $certificates = Certificate::whereHas('donation', function ($query) use ($user) {
                 $query->where('user_id', $user->id);
